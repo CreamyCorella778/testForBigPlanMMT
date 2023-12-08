@@ -1,9 +1,9 @@
-# phan ma ket noi su dung ma ID va mat khau xac thuc
-# connecting 2 computers using an ID and OTP
-import socket, pynput, random, string, mss, PIL, keyboard, mouse, threading, subprocess, time
+import socket, pynput, random, string, mss, PIL, keyboard, mouse, threading, subprocess, pysftp, datetime
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # cau lenh tuong trung cho o cam (socket) cua may khach
 
+# phan ma ket noi su dung ma ID va mat khau xac thuc
+# connecting 2 computers using an ID and OTP
 def otp_generator():
     result = str("")
     rand_list = list(string.ascii_lowercase).append(['0','1','2','3','4','5','6','7','8','9'])
@@ -180,4 +180,45 @@ def function_6_keyboard():
 # chuc nang khoa may tinh
 def function_8_logoff():
     # if (flag == 8.333)
-    
+    # cac canh bao tren giao dien nguoi dung nham xac nhan viec khoa may tinh va dang xuat
+    subprocess.call(["shutdown", "/l "])
+
+# chuc nang khoi dong lai may tinh
+def function_8_restart():
+    # if (flag == 8.666)
+    # cac canh bao tren giao dien nguoi dung nham xac nhan viec khoi dong lai may tinh
+    subprocess.call(["shutdown", "/r"])
+
+# chuc nang tat may tinh
+def function_8_shutdown():
+    # if (flag == 8.999)
+    # cac canh bao tren giao dien nguoi dung nham xac nhan viec tat nguon may tinh
+    subprocess.call(["shutdown", "/s"])
+
+# chuc nang tinh thoi gian da dieu khien. ham nay se o may khach de tien cho giao dien nguoi dung
+def function_12():
+    # cac cau lenh tuong trung
+    HOST = '127.0.0.1'  # The server's hostname or IP address
+    PORT = 65431        # The port used by the server
+    server_address = (HOST, PORT)
+    s.connect(server_address)
+    conn, addr = s.accept()
+
+    global time_start
+    time_start = datetime.datetime.now()
+
+    #....
+    #if (flag == 12) truong hop chi khi nguoi dung can tinh toan thoi gian ta moi thuc hien
+    time_end = datetime.datetime.now()
+    timerun = time_end - time_start
+    return timerun
+
+    #if (flag == 12.5) truong hop thoi gian luon hien tren giao dien nguoi dung, khong ngung tin thoi gian theo thoi gian thuc
+    # while (van con ket noi):
+    # time_end = datetime.datetime.now()
+    # timerun = time_end - time_start
+    # return timerun
+
+
+# chuc nang chuyen tep qua lai giua 2 may, truoc het la tu may khach sang may chu
+def function_13():
