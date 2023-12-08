@@ -1,6 +1,6 @@
 # phan ma ket noi su dung ma ID va mat khau xac thuc
 # connecting 2 computers using an ID and OTP
-import socket, pynput, random, string, mss, PIL, keyboard, mouse, threading
+import socket, pynput, random, string, mss, PIL, keyboard, mouse, threading, subprocess, time
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # cau lenh tuong trung cho o cam (socket) cua may khach
 
@@ -177,3 +177,7 @@ def function_6_keyboard():
     # Tạo và khởi chạy luồng mới để dừng việc di chuyển chuột khi co tin hieu dung viec chan tu may khach 
     threading.Thread(target=stop_infinite_keyboard_control).start()
 
+# chuc nang khoa may tinh
+def function_8_logoff():
+    # if (flag == 8.333)
+    
