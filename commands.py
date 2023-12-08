@@ -221,4 +221,30 @@ def function_12():
 
 
 # chuc nang chuyen tep qua lai giua 2 may, truoc het la tu may khach sang may chu
-def function_13():
+def function_13_client_to_server():
+    HOST = '127.0.0.1' # dia chi IP cua may chu minh hoa
+    PORT = 65431       # port cua may chu minh hoa
+    # if (flag == 13)
+    with pysftp.Connection(HOST) as server_connection:
+        # phan nhan ten hoac duong dan den ten tep can gui di
+        server_connection.put("example.bin", "C:/Users/user/Documents/ExampleDest")
+        """
+        Phia may chu co the lam the nay de nhan tep:
+        # if (flag == 13)
+        with pysftp.Connection(client_ip) as server_connection:
+            server_connection.get("example.bin", "C:/Users/user/Documents/ExampleDest")
+        """
+
+# chuc nang chuyen tep qua lai giua 2 may, sau do la chuyen tep tu may chu sang may khach
+def function_13_server_to_client():
+    conn, addr = s.accept() # minh hoa viec may chu nhan ket noi tu may khach, addr là dia chi IP cua may khach
+    # if (flag == 13.5)
+    with pysftp.Connection(addr) as client_connection:
+        # phan nhan ten hoac duong dan den ten tep can gui di
+        client_connection.put("example.bin", "C:/Users/user/Documents/ExampleDest")
+        """
+        Phia may khach co the lam the nay de nhan tep:
+        # if (flag == 13.5)
+        with pysftp.Connection(HOST) as client_connection:
+            client_connection.get("example.bin", "C:/Users/user/Documents/ExampleDest")
+        """
